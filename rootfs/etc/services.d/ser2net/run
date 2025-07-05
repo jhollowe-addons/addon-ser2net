@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bashio
+# vim: ft=bash
+# shellcheck shell=bash
+# ==============================================================================
+# Runs ser2net
+# ==============================================================================
+
+bashio::log.debug "ser2net configuration file:"
+bashio::log.debug $(cat /etc/ser2net/ser2net.yaml | grep -v '^#')
+
+# print out the version
+bashio::log.info $(ser2net -v)
+
+if bashio::config.true "enable_admin_interface"; then
+    bashio::log.info "Admin interface available on $(bashio::addon.port 12346)/tcp"
+fi
+
+# run in foreground and attach to stdout
+ser2net -d

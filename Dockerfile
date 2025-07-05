@@ -5,10 +5,10 @@ RUN apk add --no-cache \
     ser2net
 
 
-# COPY rootfs /
+COPY rootfs /
 
-# WORKDIR /
+WORKDIR /
 
-COPY run.sh /
+# COPY run.sh /
 
-CMD [ "/run.sh" ]
+# CMD [ "/run.sh" ]

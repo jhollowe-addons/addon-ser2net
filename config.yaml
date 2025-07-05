@@ -2,9 +2,9 @@
 name: ser2net server
 version: dev
 slug: ser2net
-description: Expose serial ports over the network
+description: Expose serial ports over the network, including RFC2217 support for remote port settings change (e.g. baud rate or RTS)
 url: https://github.com/jhollowe/addon-ser2net
-# codenotary: codenotary@@johnhollowell.com
+# codenotary: codenotary@johnhollowell.com
 arch:
   - aarch64
   - amd64
@@ -15,18 +15,18 @@ init: false
 # privileged:
 #   - SYS_RAWIO
 
-map:
-  - ssl
-  - share:rw
+# map:
+#   - ssl
+#   - share:rw
 #   - config:rw
 ports:
-  7000/tcp: 12345
-  7001/tcp: 12346
+  12345/tcp: 7000
+  12346/tcp: 7001
 ports_description:
-  7000/tcp: "port to access serial device (tcp or telnet(rfc2217))"
-  7001/tcp: "port to access admin interface prompt"
-devices:
-  - /dev/ttyACM0
+  12345/tcp: "port to access serial device (tcp or telnet/rfc2217)"
+  12346/tcp: "port to access admin interface (if enabled))"
+uart: true # auto-map serial devices into the container
+# usb: true
 options:
   serial_device: /dev/ttyACM0
   max_connections: 1
@@ -35,4 +35,7 @@ schema:
   serial_device: device(subsystem=tty)
   max_connections: int
   enable_admin_interface: bool
+
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
+# TODO comment here once available
+# https://community.home-assistant.io/t/ser2net-integration-addon/174337
