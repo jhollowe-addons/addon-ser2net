@@ -1,0 +1,32 @@
+---
+name: ser2net server
+version: dev
+slug: ser2net
+description: Expose serial ports over the network
+url: https://github.com/jhollowe/addon-ser2net
+# codenotary: codenotary@@johnhollowell.com
+arch:
+  - aarch64
+  - amd64
+  - armv7
+init: false
+# homeassistant_api: true
+# full_access: true
+# privileged:
+#   - SYS_RAWIO
+
+map:
+  - ssl
+  - share:rw
+#   - config:rw
+ports:
+  7000/tcp: 7000
+ports_description:
+  7000/tcp: "port to access serial device"
+devices:
+  - /dev/ttyACM0
+options:
+  serial_device: /dev/ttyACM0
+schema:
+  serial_device: str
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
