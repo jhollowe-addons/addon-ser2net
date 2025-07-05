@@ -20,13 +20,19 @@ map:
   - share:rw
 #   - config:rw
 ports:
-  7000/tcp: 7000
+  7000/tcp: 12345
+  7001/tcp: 12346
 ports_description:
-  7000/tcp: "port to access serial device"
+  7000/tcp: "port to access serial device (tcp or telnet(rfc2217))"
+  7001/tcp: "port to access admin interface prompt"
 devices:
   - /dev/ttyACM0
 options:
   serial_device: /dev/ttyACM0
+  max_connections: 1
+  enable_admin_interface: true
 schema:
-  serial_device: str
+  serial_device: device(subsystem=tty)
+  max_connections: int
+  enable_admin_interface: bool
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
