@@ -14,6 +14,11 @@ on:
 
 jobs:
   workflows:
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     uses: jhollowe-addons/workflows/.github/workflows/addon-deploy.yaml@main
     secrets:
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
