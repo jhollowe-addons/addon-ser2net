@@ -31,5 +31,3 @@ schema:
   max_connections: int
   enable_admin_interface: bool
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
-# TODO comment here once available
-# https://community.home-assistant.io/t/ser2net-integration-addon/174337
