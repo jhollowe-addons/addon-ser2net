@@ -24,7 +24,7 @@ This addon runs ser2net, a tool to expose a serial device over the network.
 
 ## Support
 
-Got questions?  [open an issue here][issue] on GitHub.
+Got questions? [open an issue here][issue] on GitHub.
 
 ## Contributing
 
